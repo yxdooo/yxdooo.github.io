@@ -114,6 +114,20 @@ section{padding:46px 0}.section-head{display:flex;align-items:center;justify-con
 
 .rating-guide{display:flex;flex-wrap:wrap;gap:8px 22px;margin:17px 0 0;padding:13px 0;border-top:1px solid var(--line);font-size:10px;color:var(--muted)}.rating-guide span{display:inline-flex;gap:6px;align-items:baseline}.rating-guide b{font-weight:500;color:#c0a8ff;white-space:nowrap}.contribution-title:hover{color:var(--accent)}.contribution-links{border-top:1px solid var(--line);padding-top:13px;margin:0 0 18px;display:grid;gap:12px}.contribution-links a{display:block}.contribution-links strong{display:block;font-size:11px;font-weight:550;color:#c8b6f1;line-height:1.6}.contribution-links a:hover strong{text-decoration:underline;text-underline-offset:3px}.contribution-links span{display:block;font-size:11px;line-height:1.7;color:var(--muted);margin-top:3px}.contribution-links .commit-id{font-family:Consolas,monospace;font-size:9px;color:#898095;margin-left:5px;display:inline}.project-body .contribution-description{margin-bottom:16px}
 .user-count{display:block;width:fit-content;font-size:11px;color:#c8b6f1;margin:0 0 12px;line-height:1.6}.user-count:hover{text-decoration:underline;text-underline-offset:3px}
+
+/* Interactive Codex-style Bot Companion */
+.bot-companion{position:fixed;bottom:22px;right:26px;z-index:90;display:flex;flex-direction:column;align-items:center;cursor:pointer;user-select:none;filter:drop-shadow(0 14px 28px rgba(0,0,0,0.5));transition:transform .2s cubic-bezier(0.34,1.56,0.64,1)}
+.bot-companion:hover{transform:scale(1.06)}
+.bot-bubble{position:absolute;bottom:calc(100% + 10px);right:0;background:#191924;border:1px solid #3d3d52;color:#eeeef5;font-size:12px;font-weight:500;padding:8px 13px;border-radius:10px;white-space:nowrap;box-shadow:0 12px 32px rgba(0,0,0,0.6);pointer-events:none;opacity:0;transform:translateY(6px) scale(0.95);transition:opacity .25s ease,transform .25s cubic-bezier(0.34,1.56,0.64,1)}
+.bot-bubble:after{content:'';position:absolute;bottom:-6px;right:32px;width:10px;height:10px;background:#191924;border-right:1px solid #3d3d52;border-bottom:1px solid #3d3d52;transform:rotate(45deg)}
+.bot-bubble.show{opacity:1;transform:translateY(0) scale(1)}
+.bot-body{animation:botHover 3.2s ease-in-out infinite;transform-origin:center bottom;transition:transform .15s ease-out}
+.bot-shadow{width:46px;height:8px;background:radial-gradient(ellipse,rgba(0,0,0,0.6) 0%,rgba(0,0,0,0) 70%);border-radius:50%;margin-top:2px;animation:shadowPulse 3.2s ease-in-out infinite}
+@keyframes botHover{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+@keyframes shadowPulse{0%,100%{transform:scale(1);opacity:0.8}50%{transform:scale(0.65);opacity:0.35}}
+.bot-body.jumping{animation:botJump .5s cubic-bezier(0.34,1.56,0.64,1)!important}
+@keyframes botJump{0%{transform:scale(1) translateY(0)}30%{transform:scale(1.15,.85) translateY(2px)}60%{transform:scale(.9,1.15) translateY(-20px)}100%{transform:scale(1) translateY(0)}}
+@media(max-width:680px){.bot-companion{bottom:15px;right:15px;transform:scale(0.8);transform-origin:bottom right}}
 </style>
 </head>
 <body>
@@ -239,7 +253,57 @@ section{padding:46px 0}.section-head{display:flex;align-items:center;justify-con
   </div>
 </section>
 
-</main><footer class="wrap"><span>© <span id="year">2026</span> yido</span><a href="#home">Back to top ↑</a></footer><div class="toast" id="toast" role="status" aria-live="polite"></div>
+</main>
+
+<!-- Interactive Bot Companion (Codex Mascot) -->
+<aside class="bot-companion" id="bot-companion" role="button" tabindex="0" aria-label="Interactive bot companion">
+  <div class="bot-bubble" id="bot-bubble">Hey there! 👋</div>
+  <div class="bot-body" id="bot-body">
+    <svg width="86" height="106" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Feet -->
+      <rect x="36" y="93" width="11" height="16" rx="5.5" fill="#4263cc" stroke="#253c8a" stroke-width="2"/>
+      <rect x="53" y="93" width="11" height="16" rx="5.5" fill="#4263cc" stroke="#253c8a" stroke-width="2"/>
+      
+      <!-- Torso -->
+      <rect x="30" y="68" width="40" height="30" rx="12" fill="#5f85ed" stroke="#253c8a" stroke-width="2.5"/>
+      <!-- Torso Prompt >_ -->
+      <path d="M43 80 L48 83.5 L43 87" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="52" y1="87" x2="58" y2="87" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+
+      <!-- Arms -->
+      <rect x="20" y="73" width="11" height="18" rx="5.5" fill="#5f85ed" stroke="#253c8a" stroke-width="2" transform="rotate(15 20 73)"/>
+      <rect x="70" y="73" width="11" height="18" rx="5.5" fill="#5f85ed" stroke="#253c8a" stroke-width="2" transform="rotate(-15 70 73)"/>
+
+      <!-- Cloud Head Shape -->
+      <g id="bot-head">
+        <path d="
+          M 25,50 
+          A 14,14 0 0,1 20,32 
+          A 15,15 0 0,1 32,18 
+          A 16,16 0 0,1 50,11 
+          A 16,16 0 0,1 68,18 
+          A 15,15 0 0,1 80,32 
+          A 14,14 0 0,1 75,50 
+          A 14,14 0 0,1 64,65 
+          L 36,65 
+          A 14,14 0 0,1 25,50 Z
+        " fill="#5f85ed" stroke="#253c8a" stroke-width="2.5"/>
+
+        <!-- Face Screen / Visor -->
+        <rect x="28" y="27" width="44" height="32" rx="10" fill="#181c2b" stroke="#283049" stroke-width="2"/>
+        
+        <!-- Eyes (Track cursor) -->
+        <g id="bot-eyes" style="transition: transform 0.1s ease-out;">
+          <path id="left-eye" d="M 37,42 Q 42,45 46,42" stroke="#4ef0ea" stroke-width="3" stroke-linecap="round" fill="none"/>
+          <path id="right-eye" d="M 54,42 Q 58,45 62,42" stroke="#4ef0ea" stroke-width="3" stroke-linecap="round" fill="none"/>
+        </g>
+      </g>
+    </svg>
+  </div>
+  <div class="bot-shadow"></div>
+</aside>
+
+<footer class="wrap"><span>© <span id="year">2026</span> yido</span><a href="#home">Back to top ↑</a></footer><div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -362,6 +426,104 @@ window.addEventListener('load', () => {
     }
   }, 1000);
 });
+
+// ==========================================
+// Interactive Codex Mascot Bot Companion
+// ==========================================
+const companion = document.getElementById('bot-companion');
+const botBody = document.getElementById('bot-body');
+const botEyes = document.getElementById('bot-eyes');
+const botBubble = document.getElementById('bot-bubble');
+const leftEye = document.getElementById('left-eye');
+const rightEye = document.getElementById('right-eye');
+
+if (companion && botBody && botEyes) {
+  const botQuotes = [
+    "Hey there! 👋",
+    "I'm yido's bot companion! 🤖",
+    "Ask yido about Discord bots!",
+    "Check out Aether Chess Engine ♞",
+    "Cybersecurity mode: 100% active 🔒",
+    "Need a custom bot or tool? Say hi! ✨",
+    "Beep boop! All systems operational 🚀"
+  ];
+
+  let quoteIdx = 0;
+  let bubbleTimer;
+  let isBlinking = false;
+
+  function playBoopSound() {
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (!AudioCtx) return;
+      const ctx = new AudioCtx();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(440, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.12);
+      gain.gain.setValueAtTime(0.04, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.12);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.12);
+    } catch(e) {}
+  }
+
+  function blink() {
+    if (isBlinking) return;
+    isBlinking = true;
+    leftEye.setAttribute('d', 'M 37,43 L 46,43');
+    rightEye.setAttribute('d', 'M 54,43 L 62,43');
+    setTimeout(() => {
+      leftEye.setAttribute('d', 'M 37,42 Q 42,45 46,42');
+      rightEye.setAttribute('d', 'M 54,42 Q 58,45 62,42');
+      isBlinking = false;
+    }, 180);
+  }
+
+  setInterval(() => {
+    if (Math.random() > 0.3) blink();
+  }, 3800);
+
+  companion.addEventListener('click', () => {
+    playBoopSound();
+    botBody.classList.remove('jumping');
+    void botBody.offsetWidth;
+    botBody.classList.add('jumping');
+
+    // Happy eyes ^ ^
+    leftEye.setAttribute('d', 'M 37,43 Q 41,39 46,43');
+    rightEye.setAttribute('d', 'M 54,43 Q 58,39 62,43');
+
+    botBubble.textContent = botQuotes[quoteIdx % botQuotes.length];
+    quoteIdx++;
+    botBubble.classList.add('show');
+    clearTimeout(bubbleTimer);
+    bubbleTimer = setTimeout(() => {
+      botBubble.classList.remove('show');
+      leftEye.setAttribute('d', 'M 37,42 Q 42,45 46,42');
+      rightEye.setAttribute('d', 'M 54,42 Q 58,45 62,42');
+    }, 3400);
+  });
+
+  // Track cursor
+  window.addEventListener('mousemove', (e) => {
+    const rect = companion.getBoundingClientRect();
+    const botCenterX = rect.left + rect.width / 2;
+    const botCenterY = rect.top + 45;
+    
+    const deltaX = e.clientX - botCenterX;
+    const deltaY = e.clientY - botCenterY;
+    
+    const maxMove = 5;
+    const moveX = Math.max(-maxMove, Math.min(maxMove, (deltaX / window.innerWidth) * maxMove * 3));
+    const moveY = Math.max(-maxMove, Math.min(maxMove, (deltaY / window.innerHeight) * maxMove * 3));
+    
+    botEyes.style.transform = `translate(${moveX}px, ${moveY}px)`;
+  });
+}
 </script>
 </body>
 </html>
