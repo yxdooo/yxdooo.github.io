@@ -113,12 +113,9 @@ section{padding:46px 0}.section-head{display:flex;align-items:center;justify-con
 .bot-body.sleeping{animation:sleepBob 4.5s ease-in-out infinite!important;opacity:0.88}
 @keyframes sleepBob{0%,100%{transform:translateY(2px) rotate(-3deg)}50%{transform:translateY(7px) rotate(1deg)}}
 
-.bot-bubble-wrap{position:absolute;bottom:calc(100% + 12px);right:0;display:flex;align-items:center;gap:6px;opacity:0;pointer-events:none;transform:translateY(6px) scale(0.95);transition:opacity .22s ease,transform .22s cubic-bezier(0.34,1.56,0.64,1)}
-.bot-bubble-wrap.show{opacity:1;pointer-events:auto;transform:translateY(0) scale(1)}
-.bot-bubble{background:#181824;border:1px solid #3d3d52;color:#eeeef5;font-size:12px;font-weight:500;padding:8px 13px;border-radius:10px;white-space:nowrap;box-shadow:0 12px 32px rgba(0,0,0,0.6);position:relative}
-.bot-bubble:after{content:'';position:absolute;bottom:-6px;right:36px;width:10px;height:10px;background:#181824;border-right:1px solid #3d3d52;border-bottom:1px solid #3d3d52;transform:rotate(45deg)}
-.bot-sound-btn{background:#181824;border:1px solid #3d3d52;border-radius:8px;width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:13px;color:#a0a0b2;transition:background .15s,color .15s;padding:0}
-.bot-sound-btn:hover{background:#232333;color:#eeeef5}
+.bot-bubble{position:absolute;bottom:calc(100% + 10px);right:0;background:#181824;border:1px solid #3d3d52;color:#eeeef5;font-size:12px;font-weight:500;padding:8px 13px;border-radius:10px;white-space:nowrap;box-shadow:0 12px 32px rgba(0,0,0,0.6);pointer-events:none;opacity:0;transform:translateY(6px) scale(0.95);transition:opacity .22s ease,transform .22s cubic-bezier(0.34,1.56,0.64,1)}
+.bot-bubble:after{content:'';position:absolute;bottom:-6px;right:32px;width:10px;height:10px;background:#181824;border-right:1px solid #3d3d52;border-bottom:1px solid #3d3d52;transform:rotate(45deg)}
+.bot-bubble.show{opacity:1;transform:translateY(0) scale(1)}
 @media(max-width:680px){.bot-companion{bottom:15px;right:15px;transform:scale(0.85);transform-origin:bottom right}}
 </style>
 </head>
@@ -237,10 +234,7 @@ section{padding:46px 0}.section-head{display:flex;align-items:center;justify-con
 
 <!-- Interactive Bot Companion (Volumetric 3D Codex Mascot) -->
 <aside class="bot-companion" id="bot-companion" role="button" tabindex="0" aria-label="Interactive bot companion">
-  <div class="bot-bubble-wrap" id="bot-bubble-wrap">
-    <div class="bot-bubble" id="bot-bubble">Hey there! 👋</div>
-    <button class="bot-sound-btn" id="bot-sound-btn" type="button" title="Sound is muted (click to unmute)" aria-label="Toggle sound">🔇</button>
-  </div>
+  <div class="bot-bubble" id="bot-bubble">Hey there! 👋</div>
   <div class="bot-body" id="bot-body">
     <svg width="88" height="108" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
@@ -451,69 +445,17 @@ const companion = document.getElementById('bot-companion');
 const botBody = document.getElementById('bot-body');
 const botShadow = document.getElementById('bot-shadow');
 const botEyes = document.getElementById('bot-eyes');
-const bubbleWrap = document.getElementById('bot-bubble-wrap');
 const botBubble = document.getElementById('bot-bubble');
-const soundBtn = document.getElementById('bot-sound-btn');
 const leftEye = document.getElementById('left-eye');
 const rightEye = document.getElementById('right-eye');
 
 if (companion && botBody && botEyes && botBubble) {
-  // Default sound is muted per user preference
-  let soundMuted = localStorage.getItem('bot_sound') !== '1';
-  if (soundBtn) {
-    soundBtn.textContent = soundMuted ? '🔇' : '🔊';
-    soundBtn.title = soundMuted ? 'Sound is muted (click to unmute)' : 'Sound is enabled (click to mute)';
-  }
-
   let isBlinking = false;
   let isSleeping = false;
   let idleTimer;
   let bubbleTimer;
   let currentTiltX = 0, currentTiltY = 0;
   let targetTiltX = 0, targetTiltY = 0;
-
-  function playChirp(type = 'boop') {
-    if (soundMuted) return;
-    try {
-      const AudioCtx = window.AudioContext || window.webkitAudioContext;
-      if (!AudioCtx) return;
-      const ctx = new AudioCtx();
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      if (type === 'boop') {
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(520, ctx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(980, ctx.currentTime + 0.12);
-        gain.gain.setValueAtTime(0.04, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.12);
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.start();
-        osc.stop(ctx.currentTime + 0.12);
-      } else if (type === 'wake') {
-        osc.type = 'triangle';
-        osc.frequency.setValueAtTime(380, ctx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(760, ctx.currentTime + 0.16);
-        gain.gain.setValueAtTime(0.03, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.16);
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.start();
-        osc.stop(ctx.currentTime + 0.16);
-      }
-    } catch(e) {}
-  }
-
-  if (soundBtn) {
-    soundBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      soundMuted = !soundMuted;
-      localStorage.setItem('bot_sound', soundMuted ? '0' : '1');
-      soundBtn.textContent = soundMuted ? '🔇' : '🔊';
-      soundBtn.title = soundMuted ? 'Sound is muted (click to unmute)' : 'Sound is enabled (click to mute)';
-      if (!soundMuted) playChirp('boop');
-    });
-  }
 
   function setEyeExpression(expr) {
     if (!leftEye || !rightEye) return;
@@ -594,17 +536,16 @@ if (companion && botBody && botEyes && botBubble) {
     botBody.classList.add('sleeping');
     setEyeExpression('sleep');
     botBubble.textContent = "z Z Z ... 😴";
-    if (bubbleWrap) bubbleWrap.classList.add('show');
+    botBubble.classList.add('show');
   }
 
   function wakeUp() {
     isSleeping = false;
     botBody.classList.remove('sleeping');
     setEyeExpression('happy');
-    playChirp('wake');
     botBubble.textContent = "I'm awake! 👀";
     setTimeout(() => {
-      if (bubbleWrap) bubbleWrap.classList.remove('show');
+      botBubble.classList.remove('show');
       setEyeExpression('idle');
     }, 1800);
     resetIdleTimer();
@@ -616,7 +557,6 @@ if (companion && botBody && botEyes && botBubble) {
       return;
     }
     resetIdleTimer();
-    playChirp('boop');
 
     botBody.classList.remove('jumping');
     void botBody.offsetWidth;
@@ -624,11 +564,11 @@ if (companion && botBody && botEyes && botBubble) {
     setEyeExpression('happy');
 
     botBubble.textContent = getContextualQuote();
-    if (bubbleWrap) bubbleWrap.classList.add('show');
+    botBubble.classList.add('show');
 
     clearTimeout(bubbleTimer);
     bubbleTimer = setTimeout(() => {
-      if (bubbleWrap) bubbleWrap.classList.remove('show');
+      botBubble.classList.remove('show');
       if (!isSleeping) setEyeExpression('idle');
     }, 3400);
   });
