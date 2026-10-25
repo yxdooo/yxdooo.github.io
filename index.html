@@ -38,7 +38,7 @@
 header{background:#101014ef;border-bottom:1px solid #ffffff09;position:sticky;top:0;z-index:10;backdrop-filter:blur(16px)}.nav{height:78px;display:flex;align-items:center;justify-content:space-between}.brand{font-size:24px;font-weight:750;letter-spacing:-1.4px}.brand span{color:var(--accent)}nav{display:flex;gap:26px;align-items:center;font-size:13px;color:var(--muted)}nav a:hover{color:var(--text)}.nav-contact{border:1px solid var(--line);color:var(--text);padding:8px 15px;border-radius:8px}
 .hero{padding:95px 0 86px;display:grid;grid-template-columns:1.2fr 1fr;gap:76px;align-items:center}.kicker{font-size:12px;font-weight:600;letter-spacing:.06em;color:var(--accent);display:flex;align-items:center;gap:8px}.kicker:before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent)}h1{font-size:clamp(48px,5.7vw,66px);line-height:1.12;letter-spacing:-3px;margin:20px 0 22px;font-weight:700}h1 span{color:var(--accent)}.hero p{max-width:470px;font-size:16px;color:var(--muted);line-height:1.85;margin:0}.hero strong{color:#d8d8e1;font-weight:500}.buttons{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap}.btn{display:inline-flex;gap:14px;justify-content:center;align-items:center;padding:11px 18px;border-radius:8px;font-size:13px;font-weight:600;border:1px solid var(--line);transition:background .18s,transform .18s}.btn:hover{background:var(--panel2);transform:translateY(-2px)}.btn.primary{background:var(--accent);border-color:var(--accent);color:#181024}.btn.primary:hover{background:#c7b7ff}.icon{width:18px;height:18px;display:inline-block;vertical-align:middle;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 
-/* Profile Card & Discord / Spotify Presence */
+/* Profile Card & Discord Presence */
 .profile{border:1px solid var(--line);background:var(--panel);border-radius:16px;box-shadow:0 22px 60px #0002;overflow:hidden}
 .profile-top{padding:25px 26px 23px;border-bottom:1px solid var(--line);display:flex;gap:14px;align-items:center}
 .avatar-wrap{position:relative;display:inline-block;flex-shrink:0}
@@ -53,21 +53,6 @@ header{background:#101014ef;border-bottom:1px solid #ffffff09;position:sticky;to
 .handle{font-size:12px;color:var(--muted)}
 
 .code{padding:24px 26px;font:12px/2.05 Consolas,'Courier New',monospace;color:#a9a9ba}.code .key{color:#c7b6fb}.code .val{color:#b5cca6}.code .white{color:#dedee8}.code .comment{color:#75758c}
-
-/* Spotify Card */
-.spotify-card{border-top:1px solid var(--line);padding:13px 22px;background:#14141b;display:none;align-items:center;gap:12px;transition:background .2s}
-.spotify-card:hover{background:#181822}
-.spotify-art{width:42px;height:42px;border-radius:8px;background:#22222c no-repeat center/cover;flex-shrink:0;border:1px solid #ffffff12}
-.spotify-info{min-width:0;flex:1}
-.spotify-label{display:flex;align-items:center;gap:6px;font-size:9.5px;font-weight:700;letter-spacing:.08em;color:#1ed760;margin-bottom:3px}
-.spotify-icon{width:12px;height:12px;fill:currentColor;flex-shrink:0}
-.equalizer{display:inline-flex;align-items:flex-end;gap:2px;height:10px;margin-left:auto}
-.equalizer i{width:2px;height:100%;background:#1ed760;border-radius:1px;animation:eq 1.1s ease-in-out infinite alternate}
-.equalizer i:nth-child(2){animation-delay:-.4s;height:60%}
-.equalizer i:nth-child(3){animation-delay:-.8s;height:80%}
-@keyframes eq{0%{height:25%}100%{height:100%}}
-.spotify-song{font-size:12px;font-weight:600;color:#eeeef3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.3}
-.spotify-artist{font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:1px}
 
 .profile-footer{display:flex;justify-content:space-between;padding:12px 26px;border-top:1px solid var(--line);color:#8f8f9f;font-size:10px;letter-spacing:.02em}
 
@@ -134,7 +119,7 @@ section{padding:46px 0}.section-head{display:flex;align-items:center;justify-con
 <svg style="display:none" xmlns="http://www.w3.org/2000/svg"><symbol id="arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"/></symbol><symbol id="code" viewBox="0 0 24 24"><path d="m8 6-6 6 6 6m8-12 6 6-6 6m-3-15-2 18"/></symbol><symbol id="shield" viewBox="0 0 24 24"><path d="m12 2 8 4v6c0 5-8 10-8 10S4 17 4 12V6z"/><path d="m8 12 3 3 5-6"/></symbol><symbol id="terminal" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m6 9 3 3-3 3m7 0h5"/></symbol><symbol id="github" viewBox="0 0 24 24"><path d="M9 19c-4 1-4-2-5-2m10 5v-4c0-1 .1-1.7-.5-2.3 3.5-.4 7-1.7 7-7.7 0-1.7-.6-3-1.6-4.1.2-.4.7-2-.2-4-1.3 0-2.8.9-4 1.6a13 13 0 0 0-7 0C6.5.8 5 .1 3.7.1c-.9 2-.4 3.6-.2 4C2.5 5.2 2 6.5 2 8.2c0 6 3.5 7.3 7 7.7-.5.5-.6 1.3-.6 2.3V22" transform="translate(1 1) scale(.9)"/></symbol><symbol id="copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h4"/></symbol></svg>
 <header><div class="wrap nav"><a class="brand" href="#home">yido</a><nav aria-label="Navigation"><a href="#about">About</a><a href="#focus">Focus &amp; Stack</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a class="nav-contact" href="#contact">Get in touch ↗</a></nav></div></header>
 <main class="wrap" id="home">
-<section class="hero" aria-labelledby="intro-title"><div><div class="kicker">DEVELOPER / SECURITY STUDENT</div><h1 id="intro-title">Hey, I’m <span>yido</span><br>I build software.</h1><p>A <strong>cybersecurity student</strong> and <strong>freelance developer</strong>. I specialize in building custom <strong>Discord bots</strong>, desktop utilities, and web apps, with an ongoing focus on systems programming and security.</p><div class="buttons"><a class="btn primary" href="#projects">Explore my projects <svg class="icon"><use href="#arrow"/></svg></a><a class="btn" href="https://github.com/yxdooo" target="_blank" rel="noopener noreferrer"><svg class="icon"><use href="#github"/></svg>GitHub</a></div></div>
+<section class="hero" aria-labelledby="intro-title"><div><div class="kicker">DEVELOPER / SECURITY STUDENT</div><h1 id="intro-title">Hey, I’m <span>yido</span><br>I build software.</h1><p>A <strong>cybersecurity student</strong> and <strong>freelance developer</strong>. I build custom <strong>Discord bots</strong>, desktop tools, and web applications, exploring low-level systems and software security along the way.</p><div class="buttons"><a class="btn primary" href="#projects">Explore my projects <svg class="icon"><use href="#arrow"/></svg></a><a class="btn" href="https://github.com/yxdooo" target="_blank" rel="noopener noreferrer"><svg class="icon"><use href="#github"/></svg>GitHub</a></div></div>
 <aside class="profile" aria-label="Developer profile">
   <div class="profile-top">
     <div class="avatar-wrap">
@@ -147,30 +132,18 @@ section{padding:46px 0}.section-head{display:flex;align-items:center;justify-con
     </div>
   </div>
   <div class="code"><span class="comment">// a quick introduction</span><br><span class="key">const</span> <span class="white">developer</span> = {<br>&nbsp; name: <span class="val">"yido"</span>,<br>&nbsp; role: <span class="val">"Freelance dev &amp; bot creator"</span>,<br>&nbsp; studying: <span class="val">"Cybersecurity"</span>,<br>&nbsp; currentFocus: <span class="val">"Aether Chess Engine"</span>,<br>&nbsp; languages: [<br>&nbsp;&nbsp; <span class="val">"Python"</span>, <span class="val">"Rust"</span>,<br>&nbsp;&nbsp; <span class="val">"JavaScript"</span>, <span class="val">"TypeScript"</span>, <span class="val">"Lua"</span><br>&nbsp; ]<br>};</div>
-  <a class="spotify-card" id="spotify-card" href="https://open.spotify.com" target="_blank" rel="noopener noreferrer" aria-label="Listening to Spotify">
-    <div class="spotify-art" id="spotify-art"></div>
-    <div class="spotify-info">
-      <div class="spotify-label">
-        <svg class="spotify-icon" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.6 14.4c-.2.3-.6.4-.9.2-2.5-1.5-5.6-1.9-9.3-1-.4.1-.7-.1-.8-.5-.1-.4.1-.7.5-.8 4.1-1 7.6-.5 10.3 1.2.4.2.4.6.1.9zm1.2-2.7c-.2.4-.7.5-1.1.3-2.9-1.8-7.3-2.3-10.7-1.3-.4.1-.9-.1-1-.5-.1-.4.1-.9.5-1 3.9-1.2 8.8-.6 12.1 1.4.3.2.5.7.2 1.1zm.1-2.8C14.4 9 8.2 8.8 4.8 9.8c-.5.2-1.1-.1-1.2-.7-.2-.5.1-1.1.7-1.2 3.9-1.2 10.8-1 14.8 1.4.5.3.6.9.3 1.4-.2.5-.8.7-1.3.4z"/></svg>
-        <span>LISTENING TO SPOTIFY</span>
-        <span class="equalizer" aria-hidden="true"><i></i><i></i><i></i></span>
-      </div>
-      <div class="spotify-song" id="spotify-song">Track Name</div>
-      <div class="spotify-artist" id="spotify-artist">Artist</div>
-    </div>
-  </a>
   <div class="profile-footer"><span>profile.js</span><span>JavaScript</span></div>
 </aside>
 </section>
 
-<section class="about" id="about" aria-labelledby="about-title"><h2 id="about-title">A little about me.</h2><p>I’m studying <strong>cybersecurity</strong> while building software as a <strong>freelance developer</strong>. I have deep expertise in building tailored, high-performance <strong>Discord bots</strong> and automated backend utilities. Aside from desktop and web tools, I tinker with game logic and entry-level <strong>Roblox scripting</strong> using Lua. Software engineering is where I turn complex logic into practice; security is what I study alongside it.</p></section>
+<section class="about" id="about" aria-labelledby="about-title"><h2 id="about-title">A little about me.</h2><p>I’m studying <strong>cybersecurity</strong> while taking on projects as a <strong>freelance developer</strong>. I frequently build custom <strong>Discord bots</strong> and automation scripts for online communities and private clients, alongside desktop and web tools. In my spare time, I also experiment with game logic in <strong>Roblox (Lua)</strong>. Software engineering is where I build things that work; security is what keeps me curious about how they break.</p></section>
 
 <!-- Current Focus & Environment Section -->
 <section class="now-setup" id="focus" aria-label="Current focus and workflow">
   <article class="now-card">
     <div class="section-badge"><span class="pulsing-dot" aria-hidden="true"></span> CURRENT FOCUS · NOW</div>
     <h3>Aether Chess Engine</h3>
-    <p>Actively working on the search depth optimization, bitboard move generation, and NNUE neural network evaluation algorithm for Aether Chess Engine in Rust and WebAssembly.</p>
+    <p>Improving search pruning, bitboard move generation, and experimenting with NNUE neural evaluation for my Rust-based chess engine.</p>
     <div class="now-tags">
       <span class="tag" data-lang="rs"><i></i>Rust</span>
       <span class="tag">WebAssembly</span>
@@ -192,8 +165,8 @@ section{padding:46px 0}.section-head{display:flex;align-items:center;justify-con
         <span class="setup-val">VS Code · JetBrains (PyCharm / CLion)</span>
       </div>
       <div class="setup-item">
-        <span class="setup-label">Core Specialty</span>
-        <span class="setup-val">Discord Bots · Automation · Security</span>
+        <span class="setup-label">Main Focus</span>
+        <span class="setup-val">Discord Bots · CLI Tooling · Security Labs</span>
       </div>
       <div class="setup-item">
         <span class="setup-label">Game Scripting</span>
@@ -203,7 +176,7 @@ section{padding:46px 0}.section-head{display:flex;align-items:center;justify-con
   </article>
 </section>
 
-<section id="skills" aria-labelledby="skills-title"><div class="section-head"><h2 id="skills-title">Skills &amp; toolkit</h2><p>Self-assessed · out of 5</p></div><div class="skills"><article class="skill-group"><div class="skill-title"><svg class="icon"><use href="#code"/></svg>Languages</div><div class="rating-grid"><div class="rating-row"><span class="rating-name">Python</span><span class="rating-value" role="img" aria-label="4 out of 5 stars"><span class="stars" aria-hidden="true">★★★★★<span class="stars-fill" style="--fill:80%">★★★★★</span></span><span class="score" aria-hidden="true">4/5</span></span></div><div class="rating-row"><span class="rating-name">Rust</span><span class="rating-value" role="img" aria-label="3.5 out of 5 stars"><span class="stars" aria-hidden="true">★★★★★<span class="stars-fill" style="--fill:70%">★★★★★</span></span><span class="score" aria-hidden="true">3.5/5</span></span></div><div class="rating-row"><span class="rating-name">JavaScript</span><span class="rating-value" role="img" aria-label="4.5 out of 5 stars"><span class="stars" aria-hidden="true">★★★★★<span class="stars-fill" style="--fill:90%">★★★★★</span></span><span class="score" aria-hidden="true">4.5/5</span></span></div><div class="rating-row"><span class="rating-name">TypeScript</span><span class="rating-value" role="img" aria-label="4.5 out of 5 stars"><span class="stars" aria-hidden="true">★★★★★<span class="stars-fill" style="--fill:90%">★★★★★</span></span><span class="score" aria-hidden="true">4.5/5</span></span></div><div class="rating-row"><span class="rating-name">C++</span><span class="rating-value" role="img" aria-label="3 out of 5 stars"><span class="stars" aria-hidden="true">★★★★★<span class="stars-fill" style="--fill:60%">★★★★★</span></span><span class="score" aria-hidden="true">3/5</span></span></div><div class="rating-row"><span class="rating-name">Lua (Roblox)</span><span class="rating-value" role="img" aria-label="2 out of 5 stars"><span class="stars" aria-hidden="true">★★★★★<span class="stars-fill" style="--fill:40%">★★★★★</span></span><span class="score" aria-hidden="true">2/5</span></span></div></div></article><article class="skill-group"><div class="skill-title"><svg class="icon"><use href="#terminal"/></svg>Frameworks &amp; specializations</div><div class="rating-grid single"><div class="rating-row"><span class="rating-name">Discord Bot Development</span><span class="rating-value" role="img" aria-label="4.5 out of 5 stars"><span class="stars" aria-hidden="true">★★★★★<span class="stars-fill" style="--fill:90%">★★★★★</span></span><span class="score" aria-hidden="true">4.5/5</span></span></div><div class="rating-row"><span class="rating-name">Node.js / Express</span><span class="rating-value" role="img" aria-label="3.5 out of 5 stars"><span class="stars" aria-hidden="true">★★★★★<span class="stars-fill" style="--fill:70%">★★★★★</span></span><span class="score" aria-hidden="true">3.5/5</span></span></div><div class="rating-row"><span class="rating-name">React</span><span class="rating-value" role="img" aria-label="3.4 out of 5 stars"><span class="stars" aria-hidden="true">★★★★★<span class="stars-fill" style="--fill:68%">★★★★★</span></span><span class="score" aria-hidden="true">3.4/5</span></span></div><div class="rating-row"><span class="rating-name">Cybersecurity &amp; Labs</span><span class="rating-value" role="img" aria-label="2.5 out of 5 stars"><span class="stars" aria-hidden="true">★★★★★<span class="stars-fill" style="--fill:50%">★★★★★</span></span><span class="score" aria-hidden="true">2.5/5</span></span></div></div></article></div><div class="rating-guide" aria-label="Skill rating guide"><span><b>1 ★</b> Getting started</span><span><b>2 ★</b> Learning</span><span><b>3 ★</b> Working knowledge</span><span><b>4 ★</b> Comfortable building projects</span><span><b>5 ★</b> Advanced</span></div><div class="toolkit"><span>Also working with</span><span class="tag">Wireshark</span><span class="tag">Burp Suite</span><span class="tag">Tailwind CSS</span><span class="tag">Three.js</span><span class="tag">WebAssembly</span></div></section>
+<section id="skills" aria-labelledby="skills-title"><div class="section-head"><h2 id="skills-title">Skills &amp; toolkit</h2><p>Self-assessed · out of 5</p></div><div class="skills"><article class="skill-group"><div class="skill-title"><svg class="icon"><use href="#code"/></svg>Languages</div><div class="rating-grid"><div class="rating-row"><span class="rating-name">Python</span><span class="rating-value" role="img" aria-label="4 out of 5 stars"><span class="stars" aria-hidden="true">★★★★★<span class="stars-fill" style="--fill:80%">★★★★★</span></span><span class="score" aria-hidden="true">4/5</span></span></div><div class="rating-row"><span class="rating-name">Rust</span><span class="rating-value" role="img" aria-label="3.5 out of 5 stars"><span class="stars" aria-hidden="true">★★★★★<span class="stars-fill" style="--fill:70%">★★★★★</span></span><span class="score" aria-hidden="true">3.5/5</span></span></div><div class="rating-row"><span class="rating-name">JavaScript</span><span class="rating-value" role="img" aria-label="4.5 out of 5 stars"><span class="stars" aria-hidden="true">★★★★★<span class="stars-fill" style="--fill:90%">★★★★★</span></span><span class="score" aria-hidden="true">4.5/5</span></span></div><div class="rating-row"><span class="rating-name">TypeScript</span><span class="rating-value" role="img" aria-label="4.5 out of 5 stars"><span class="stars" aria-hidden="true">★★★★★<span class="stars-fill" style="--fill:90%">★★★★★</span></span><span class="score" aria-hidden="true">4.5/5</span></span></div><div class="rating-row"><span class="rating-name">C++</span><span class="rating-value" role="img" aria-label="3 out of 5 stars"><span class="stars" aria-hidden="true">★★★★★<span class="stars-fill" style="--fill:60%">★★★★★</span></span><span class="score" aria-hidden="true">3/5</span></span></div><div class="rating-row"><span class="rating-name">Lua (Roblox)</span><span class="rating-value" role="img" aria-label="2 out of 5 stars"><span class="stars" aria-hidden="true">★★★★★<span class="stars-fill" style="--fill:40%">★★★★★</span></span><span class="score" aria-hidden="true">2/5</span></span></div></div></article><article class="skill-group"><div class="skill-title"><svg class="icon"><use href="#terminal"/></svg>Frameworks &amp; focus</div><div class="rating-grid single"><div class="rating-row"><span class="rating-name">Discord Bots</span><span class="rating-value" role="img" aria-label="4 out of 5 stars"><span class="stars" aria-hidden="true">★★★★★<span class="stars-fill" style="--fill:80%">★★★★★</span></span><span class="score" aria-hidden="true">4/5</span></span></div><div class="rating-row"><span class="rating-name">Node.js / Express</span><span class="rating-value" role="img" aria-label="3.5 out of 5 stars"><span class="stars" aria-hidden="true">★★★★★<span class="stars-fill" style="--fill:70%">★★★★★</span></span><span class="score" aria-hidden="true">3.5/5</span></span></div><div class="rating-row"><span class="rating-name">React</span><span class="rating-value" role="img" aria-label="3.4 out of 5 stars"><span class="stars" aria-hidden="true">★★★★★<span class="stars-fill" style="--fill:68%">★★★★★</span></span><span class="score" aria-hidden="true">3.4/5</span></span></div><div class="rating-row"><span class="rating-name">Security Labs &amp; CTFs</span><span class="rating-value" role="img" aria-label="2.5 out of 5 stars"><span class="stars" aria-hidden="true">★★★★★<span class="stars-fill" style="--fill:50%">★★★★★</span></span><span class="score" aria-hidden="true">2.5/5</span></span></div></div></article></div><div class="rating-guide" aria-label="Skill rating guide"><span><b>1 ★</b> Getting started</span><span><b>2 ★</b> Learning</span><span><b>3 ★</b> Working knowledge</span><span><b>4 ★</b> Comfortable building projects</span><span><b>5 ★</b> Advanced</span></div><div class="toolkit"><span>Also working with</span><span class="tag">Wireshark</span><span class="tag">Burp Suite</span><span class="tag">Tailwind CSS</span><span class="tag">Three.js</span><span class="tag">WebAssembly</span></div></section>
 
 <section id="projects" aria-labelledby="projects-title"><div class="section-head"><h2 id="projects-title">Projects &amp; contributions</h2><a class="small-link" href="https://github.com/yxdooo?tab=repositories" target="_blank" rel="noopener noreferrer">All repositories <svg class="icon"><use href="#arrow"/></svg></a></div><div class="projects">
 <article class="project contribution"><a class="project-visual fluxer-preview" href="https://github.com/fluxerapp/fluxer" target="_blank" rel="noopener noreferrer" aria-label="Fluxer on GitHub"><span class="fluxer-word">fluxer</span><div class="chat-lines" aria-hidden="true"><i></i><i></i><i></i></div></a><div class="project-body"><div class="project-badges"><span class="work-status">CONTRIBUTING</span><span class="repo-stars" title="Repository stars on GitHub">★ 10k+ stars</span></div><h3><a class="contribution-title" href="https://github.com/fluxerapp/fluxer" target="_blank" rel="noopener noreferrer">Fluxer ↗</a></h3><a class="user-count" href="https://fluxer.app/blog/self-hosting-and-the-operator-pass" target="_blank" rel="noopener noreferrer" title="Source: Fluxer official blog; 500,000 registered users reached on 19 October 2026">500k+ registered users · Oct 2026 ↗</a><p class="contribution-description">Open-source instant messaging and voice chat. My contributions include fixes in the media proxy and desktop keybindings.</p><div class="contribution-links"><a href="https://github.com/fluxerapp/fluxer/commit/60a62c24c3fbc969f0626b53fb59326ddef2cf8e" target="_blank" rel="noopener noreferrer"><strong>Media proxy cancellation ↗ <span class="commit-id">60a62c2</span></strong><span>Added cleanup so waiting requests are released when the active task is cancelled.</span></a><a href="https://github.com/fluxerapp/fluxer/commit/b80d41a7bfeeb0d9532857210661b6eba02f6fe2" target="_blank" rel="noopener noreferrer"><strong>Wayland push-to-talk ↗ <span class="commit-id">b80d41a</span></strong><span>Fixed key matching behind a stuck push-to-talk mute state on Linux/Wayland.</span></a></div><div class="tech">Rust · TypeScript · Open source</div></div></article>
@@ -220,28 +193,28 @@ section{padding:46px 0}.section-head{display:flex;align-items:center;justify-con
   <div class="contact-main">
     <div class="kicker">GET IN TOUCH</div>
     <h2 id="contact-title">Have something in mind?</h2>
-    <p class="contact-desc">Feel free to reach out for freelance projects, custom bot development, security reviews, or technical conversations.</p>
+    <p class="contact-desc">Open for freelance bot projects, small utilities, code reviews, or just a good technical conversation.</p>
     
     <div class="reach-grid">
       <div class="reach-item">
         <span class="reach-icon" aria-hidden="true">🛠️</span>
         <div class="reach-text">
-          <strong>Freelance &amp; Discord Bot Development</strong>
-          <span>Custom Discord bots, backend automations, desktop utilities, or web applications</span>
+          <strong>Freelance &amp; Discord Bots</strong>
+          <span>Custom Discord bots, moderation utilities, backend automation, or small web tools</span>
         </div>
       </div>
       <div class="reach-item">
         <span class="reach-icon" aria-hidden="true">🔍</span>
         <div class="reach-text">
-          <strong>Code Review &amp; Security Auditing</strong>
-          <span>Baseline security audits, architectural reviews, and vulnerability assessments</span>
+          <strong>Code Review &amp; Basic Security Checks</strong>
+          <span>A second pair of eyes on your code, configuration hygiene, and basic vulnerability spot-checks</span>
         </div>
       </div>
       <div class="reach-item">
         <span class="reach-icon" aria-hidden="true">🤝</span>
         <div class="reach-text">
-          <strong>Open Source &amp; Tech Discussions</strong>
-          <span>Open-source collaborations, project ideas, or talking software and cybersecurity</span>
+          <strong>Open Source &amp; Tech Chat</strong>
+          <span>Collaborating on projects, contributing to repositories, or talking software and cybersecurity</span>
         </div>
       </div>
     </div>
@@ -324,17 +297,13 @@ copyButton.addEventListener('click', async () => {
 });
 
 // ==========================================
-// Discord Presence & Spotify (Lanyard API)
+// Discord Presence (Lanyard API)
 // ==========================================
 const DISCORD_USER_ID = "312361517528121346";
 
 if (DISCORD_USER_ID) {
   const dot = document.getElementById('discord-dot');
   const avatarEl = document.getElementById('profile-avatar');
-  const spotifyCard = document.getElementById('spotify-card');
-  const spotifyArt = document.getElementById('spotify-art');
-  const spotifySong = document.getElementById('spotify-song');
-  const spotifyArtist = document.getElementById('spotify-artist');
 
   const statusLabels = {
     online: 'online',
@@ -358,23 +327,6 @@ if (DISCORD_USER_ID) {
       dot.className = 'status-dot ' + status;
       dot.style.display = 'block';
       dot.setAttribute('title', 'Discord: ' + (statusLabels[status] || status));
-    }
-
-    // Update Spotify
-    if (d.listening_to_spotify && d.spotify) {
-      if (spotifyCard) {
-        spotifyCard.style.display = 'flex';
-        if (d.spotify.track_id) {
-          spotifyCard.href = 'https://open.spotify.com/track/' + d.spotify.track_id;
-        }
-      }
-      if (spotifySong) spotifySong.textContent = d.spotify.song;
-      if (spotifyArtist) spotifyArtist.textContent = d.spotify.artist;
-      if (spotifyArt && d.spotify.album_art_url) {
-        spotifyArt.style.backgroundImage = 'url("' + d.spotify.album_art_url + '")';
-      }
-    } else {
-      if (spotifyCard) spotifyCard.style.display = 'none';
     }
   }
 
