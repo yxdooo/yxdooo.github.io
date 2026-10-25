@@ -40,15 +40,8 @@ header{background:#101014ef;border-bottom:1px solid #ffffff09;position:sticky;to
 .status-dot.dnd{background:#f23f43}
 .status-dot.offline{background:#80848e}
 
-.profile-meta{display:flex;flex-direction:column;min-width:0}
 .profile-name{font-size:17px;font-weight:600}
-.handle-row{display:flex;align-items:center;gap:8px;margin-top:2px}
 .handle{font-size:12px;color:var(--muted)}
-.status-badge{display:none;font:10px Consolas,monospace;padding:1px 7px;border-radius:999px;color:#a0a0af;background:#20202a;border:1px solid #2e2e3c;text-transform:lowercase;letter-spacing:.02em}
-.status-badge.online{color:#79e2a7;border-color:#2a503a;background:#18281f}
-.status-badge.idle{color:#f5c968;border-color:#5c4718;background:#2a2214}
-.status-badge.dnd{color:#f48082;border-color:#5a2327;background:#281619}
-.status-badge.offline{color:#8f8f9f;border-color:#32323e;background:#1b1b22}
 
 .code{padding:24px 26px;font:12px/2.05 Consolas,'Courier New',monospace;color:#a9a9ba}.code .key{color:#c7b6fb}.code .val{color:#b5cca6}.code .white{color:#dedee8}.code .comment{color:#75758c}
 
@@ -96,12 +89,9 @@ section{padding:46px 0}.section-head{display:flex;align-items:center;justify-con
       <div class="avatar" id="profile-avatar" aria-hidden="true">y.</div>
       <span class="status-dot" id="discord-dot" aria-label="Discord status"></span>
     </div>
-    <div class="profile-meta">
+    <div>
       <div class="profile-name">yido</div>
-      <div class="handle-row">
-        <span class="handle">@yxdooo</span>
-        <span class="status-badge" id="discord-badge"></span>
-      </div>
+      <div class="handle">@yxdooo</div>
     </div>
   </div>
   <div class="code"><span class="comment">// a quick introduction</span><br><span class="key">const</span> <span class="white">developer</span> = {<br>&nbsp; name: <span class="val">"yido"</span>,<br>&nbsp; role: <span class="val">"Freelance developer"</span>,<br>&nbsp; studying: <span class="val">"Cybersecurity"</span>,<br>&nbsp; languages: [<br>&nbsp;&nbsp; <span class="val">"Python"</span>, <span class="val">"Rust"</span>,<br>&nbsp;&nbsp; <span class="val">"JavaScript"</span>, <span class="val">"TypeScript"</span><br>&nbsp; ]<br>};</div>
@@ -157,7 +147,6 @@ const DISCORD_USER_ID = "312361517528121346";
 
 if (DISCORD_USER_ID) {
   const dot = document.getElementById('discord-dot');
-  const badge = document.getElementById('discord-badge');
   const avatarEl = document.getElementById('profile-avatar');
   const spotifyCard = document.getElementById('spotify-card');
   const spotifyArt = document.getElementById('spotify-art');
@@ -181,16 +170,11 @@ if (DISCORD_USER_ID) {
       avatarEl.style.backgroundImage = 'url("https://cdn.discordapp.com/avatars/' + d.discord_user.id + '/' + d.discord_user.avatar + '.png?size=128")';
     }
 
-    // Update status dot & text badge
+    // Update status dot
     if (dot) {
       dot.className = 'status-dot ' + status;
       dot.style.display = 'block';
       dot.setAttribute('title', 'Discord: ' + (statusLabels[status] || status));
-    }
-    if (badge) {
-      badge.textContent = statusLabels[status] || status;
-      badge.className = 'status-badge ' + status;
-      badge.style.display = 'inline-block';
     }
 
     // Update Spotify
