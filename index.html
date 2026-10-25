@@ -16,11 +16,13 @@
 <meta property="og:title" content="yido — Developer &amp; Cybersecurity Student">
 <meta property="og:description" content="Cybersecurity student and freelance developer. Python, Rust, TypeScript, and open-source projects.">
 <meta property="og:site_name" content="yxdooo">
+<meta property="og:image" content="https://cdn.discordapp.com/avatars/312361517528121346/85bb4d3d011782576f1a59af83063003.png?size=256">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="yido — Developer &amp; Cybersecurity Student">
 <meta name="twitter:description" content="Cybersecurity student and freelance developer. Python, Rust, TypeScript, and open-source projects.">
+<meta name="twitter:image" content="https://cdn.discordapp.com/avatars/312361517528121346/85bb4d3d011782576f1a59af83063003.png?size=256">
 
 <style>
 :root{color-scheme:dark;--bg:#101014;--panel:#18181f;--panel2:#1d1d26;--line:#2b2b35;--text:#eeeef3;--muted:#a0a0af;--accent:#b6a0ff;--white:#fff}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,'Segoe UI',Arial,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}button{font:inherit}button,a{-webkit-tap-highlight-color:transparent}button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:5px}::selection{background:#654c9d;color:white}.wrap{width:min(1080px,calc(100% - 56px));margin:auto}.muted{color:var(--muted)}
@@ -31,7 +33,7 @@ header{background:#101014ef;border-bottom:1px solid #ffffff09;position:sticky;to
 .profile{border:1px solid var(--line);background:var(--panel);border-radius:16px;box-shadow:0 22px 60px #0002;overflow:hidden}
 .profile-top{padding:25px 26px 23px;border-bottom:1px solid var(--line);display:flex;gap:14px;align-items:center}
 .avatar-wrap{position:relative;display:inline-block;flex-shrink:0}
-.avatar{width:54px;height:54px;border:1px solid #605276;border-radius:14px;display:grid;place-items:center;background:#2b2439;font-size:26px;color:#d2c5ff;font-weight:600;letter-spacing:-3px;padding-right:3px}
+.avatar{width:54px;height:54px;border:1px solid #605276;border-radius:14px;display:grid;place-items:center;background:#2b2439;font-size:26px;color:#d2c5ff;font-weight:600;letter-spacing:-3px;padding-right:3px;overflow:hidden;background-size:cover;background-position:center;transition:background-image .3s}
 .status-dot{position:absolute;bottom:-2px;right:-2px;width:14px;height:14px;border-radius:50%;border:3px solid var(--panel);background:#80848e;transition:background .3s;display:none}
 .status-dot.online{background:#23a55a}
 .status-dot.idle{background:#f0b232}
@@ -91,7 +93,7 @@ section{padding:46px 0}.section-head{display:flex;align-items:center;justify-con
 <aside class="profile" aria-label="Developer profile">
   <div class="profile-top">
     <div class="avatar-wrap">
-      <div class="avatar" aria-hidden="true">y.</div>
+      <div class="avatar" id="profile-avatar" aria-hidden="true">y.</div>
       <span class="status-dot" id="discord-dot" aria-label="Discord status"></span>
     </div>
     <div class="profile-meta">
@@ -151,33 +153,47 @@ copyButton.addEventListener('click', async () => {
 // ==========================================
 // Discord Presence & Spotify (Lanyard API)
 // ==========================================
-// Put your 18-19 digit Discord User ID below.
-// Example: const DISCORD_USER_ID = "342345678901234567";
-// IMPORTANT: Join discord.gg/lanyard once so Lanyard can track your presence.
-const DISCORD_USER_ID = "";
+const DISCORD_USER_ID = "312361517528121346";
 
 if (DISCORD_USER_ID) {
   const dot = document.getElementById('discord-dot');
   const badge = document.getElementById('discord-badge');
+  const avatarEl = document.getElementById('profile-avatar');
   const spotifyCard = document.getElementById('spotify-card');
   const spotifyArt = document.getElementById('spotify-art');
   const spotifySong = document.getElementById('spotify-song');
   const spotifyArtist = document.getElementById('spotify-artist');
 
+  const statusLabels = {
+    online: 'online',
+    idle: 'idle',
+    dnd: 'dnd',
+    offline: 'offline'
+  };
+
   function renderPresence(d) {
     if (!d) return;
     const status = d.discord_status || 'offline';
+
+    // Update Avatar image from Discord if available
+    if (avatarEl && d.discord_user && d.discord_user.avatar) {
+      avatarEl.innerHTML = '';
+      avatarEl.style.backgroundImage = 'url("https://cdn.discordapp.com/avatars/' + d.discord_user.id + '/' + d.discord_user.avatar + '.png?size=128")';
+    }
+
+    // Update status dot & text badge
     if (dot) {
       dot.className = 'status-dot ' + status;
       dot.style.display = 'block';
-      dot.setAttribute('title', 'Discord: ' + status);
+      dot.setAttribute('title', 'Discord: ' + (statusLabels[status] || status));
     }
     if (badge) {
-      badge.textContent = status;
+      badge.textContent = statusLabels[status] || status;
       badge.className = 'status-badge ' + status;
       badge.style.display = 'inline-block';
     }
 
+    // Update Spotify
     if (d.listening_to_spotify && d.spotify) {
       if (spotifyCard) {
         spotifyCard.style.display = 'flex';
@@ -212,7 +228,7 @@ if (DISCORD_USER_ID) {
             if (ws.readyState === WebSocket.OPEN) ws.send(JSON.stringify({ op: 3 }));
           }, payload.d.heartbeat_interval);
           ws.send(JSON.stringify({ op: 2, d: { subscribe_to_id: DISCORD_USER_ID } }));
-        } else if (payload.op === 0) { // Presence Update
+        } else if (payload.op === 0) { // Event
           renderPresence(payload.d);
         }
       } catch (err) {}
