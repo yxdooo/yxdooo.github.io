@@ -100,19 +100,26 @@ section{padding:46px 0}.section-head{display:flex;align-items:center;justify-con
 .rating-guide{display:flex;flex-wrap:wrap;gap:8px 22px;margin:17px 0 0;padding:13px 0;border-top:1px solid var(--line);font-size:10px;color:var(--muted)}.rating-guide span{display:inline-flex;gap:6px;align-items:baseline}.rating-guide b{font-weight:500;color:#c0a8ff;white-space:nowrap}.contribution-title:hover{color:var(--accent)}.contribution-links{border-top:1px solid var(--line);padding-top:13px;margin:0 0 18px;display:grid;gap:12px}.contribution-links a{display:block}.contribution-links strong{display:block;font-size:11px;font-weight:550;color:#c8b6f1;line-height:1.6}.contribution-links a:hover strong{text-decoration:underline;text-underline-offset:3px}.contribution-links span{display:block;font-size:11px;line-height:1.7;color:var(--muted);margin-top:3px}.contribution-links .commit-id{font-family:Consolas,monospace;font-size:9px;color:#898095;margin-left:5px;display:inline}.project-body .contribution-description{margin-bottom:16px}
 .user-count{display:block;width:fit-content;font-size:11px;color:#c8b6f1;margin:0 0 12px;line-height:1.6}.user-count:hover{text-decoration:underline;text-underline-offset:3px}
 
-/* Interactive Codex-style Bot Companion */
-.bot-companion{position:fixed;bottom:22px;right:26px;z-index:90;display:flex;flex-direction:column;align-items:center;cursor:pointer;user-select:none;filter:drop-shadow(0 14px 28px rgba(0,0,0,0.5));transition:transform .2s cubic-bezier(0.34,1.56,0.64,1)}
-.bot-companion:hover{transform:scale(1.06)}
-.bot-bubble{position:absolute;bottom:calc(100% + 10px);right:0;background:#191924;border:1px solid #3d3d52;color:#eeeef5;font-size:12px;font-weight:500;padding:8px 13px;border-radius:10px;white-space:nowrap;box-shadow:0 12px 32px rgba(0,0,0,0.6);pointer-events:none;opacity:0;transform:translateY(6px) scale(0.95);transition:opacity .25s ease,transform .25s cubic-bezier(0.34,1.56,0.64,1)}
-.bot-bubble:after{content:'';position:absolute;bottom:-6px;right:32px;width:10px;height:10px;background:#191924;border-right:1px solid #3d3d52;border-bottom:1px solid #3d3d52;transform:rotate(45deg)}
-.bot-bubble.show{opacity:1;transform:translateY(0) scale(1)}
-.bot-body{animation:botHover 3.2s ease-in-out infinite;transform-origin:center bottom;transition:transform .15s ease-out}
-.bot-shadow{width:46px;height:8px;background:radial-gradient(ellipse,rgba(0,0,0,0.6) 0%,rgba(0,0,0,0) 70%);border-radius:50%;margin-top:2px;animation:shadowPulse 3.2s ease-in-out infinite}
-@keyframes botHover{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
-@keyframes shadowPulse{0%,100%{transform:scale(1);opacity:0.8}50%{transform:scale(0.65);opacity:0.35}}
-.bot-body.jumping{animation:botJump .5s cubic-bezier(0.34,1.56,0.64,1)!important}
-@keyframes botJump{0%{transform:scale(1) translateY(0)}30%{transform:scale(1.15,.85) translateY(2px)}60%{transform:scale(.9,1.15) translateY(-20px)}100%{transform:scale(1) translateY(0)}}
-@media(max-width:680px){.bot-companion{bottom:15px;right:15px;transform:scale(0.8);transform-origin:bottom right}}
+/* Interactive Codex-style Bot Companion (Volumetric 3D) */
+.bot-companion{position:fixed;bottom:22px;right:26px;z-index:90;display:flex;flex-direction:column;align-items:center;cursor:pointer;user-select:none;perspective:700px}
+.bot-body{transform-style:preserve-3d;animation:botHover 3.4s ease-in-out infinite;transform-origin:center bottom;filter:drop-shadow(0 14px 28px rgba(0,0,0,0.55));will-change:transform}
+@keyframes botHover{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.bot-shadow{width:50px;height:9px;background:radial-gradient(ellipse,rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 72%);border-radius:50%;margin-top:3px;animation:shadowPulse 3.4s ease-in-out infinite;will-change:transform}
+@keyframes shadowPulse{0%,100%{transform:scale(1);opacity:0.85}50%{transform:scale(0.68);opacity:0.4}}
+.bot-companion:hover #arm-right{animation:waveHand .65s ease-in-out infinite alternate;transform-origin:69px 73px}
+@keyframes waveHand{0%{transform:rotate(-15deg)}100%{transform:rotate(-55deg) translate(-2px,-6px)}}
+.bot-body.jumping{animation:botJump .55s cubic-bezier(0.34,1.56,0.64,1)!important}
+@keyframes botJump{0%{transform:scale(1) translateY(0)}25%{transform:scale(1.18,.82) translateY(4px)}55%{transform:scale(.88,1.15) translateY(-26px)}80%{transform:scale(1.05,.95) translateY(-2px)}100%{transform:scale(1) translateY(0)}}
+.bot-body.sleeping{animation:sleepBob 4.5s ease-in-out infinite!important;opacity:0.88}
+@keyframes sleepBob{0%,100%{transform:translateY(2px) rotate(-3deg)}50%{transform:translateY(7px) rotate(1deg)}}
+
+.bot-bubble-wrap{position:absolute;bottom:calc(100% + 12px);right:0;display:flex;align-items:center;gap:6px;opacity:0;pointer-events:none;transform:translateY(6px) scale(0.95);transition:opacity .22s ease,transform .22s cubic-bezier(0.34,1.56,0.64,1)}
+.bot-bubble-wrap.show{opacity:1;pointer-events:auto;transform:translateY(0) scale(1)}
+.bot-bubble{background:#181824;border:1px solid #3d3d52;color:#eeeef5;font-size:12px;font-weight:500;padding:8px 13px;border-radius:10px;white-space:nowrap;box-shadow:0 12px 32px rgba(0,0,0,0.6);position:relative}
+.bot-bubble:after{content:'';position:absolute;bottom:-6px;right:36px;width:10px;height:10px;background:#181824;border-right:1px solid #3d3d52;border-bottom:1px solid #3d3d52;transform:rotate(45deg)}
+.bot-sound-btn{background:#181824;border:1px solid #3d3d52;border-radius:8px;width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:13px;color:#a0a0b2;transition:background .15s,color .15s;padding:0}
+.bot-sound-btn:hover{background:#232333;color:#eeeef5}
+@media(max-width:680px){.bot-companion{bottom:15px;right:15px;transform:scale(0.85);transform-origin:bottom right}}
 </style>
 </head>
 <body>
@@ -228,26 +235,81 @@ section{padding:46px 0}.section-head{display:flex;align-items:center;justify-con
 
 </main>
 
-<!-- Interactive Bot Companion (Codex Mascot) -->
+<!-- Interactive Bot Companion (Volumetric 3D Codex Mascot) -->
 <aside class="bot-companion" id="bot-companion" role="button" tabindex="0" aria-label="Interactive bot companion">
-  <div class="bot-bubble" id="bot-bubble">Hey there! 👋</div>
+  <div class="bot-bubble-wrap" id="bot-bubble-wrap">
+    <div class="bot-bubble" id="bot-bubble">Hey there! 👋</div>
+    <button class="bot-sound-btn" id="bot-sound-btn" type="button" title="Sound is muted (click to unmute)" aria-label="Toggle sound">🔇</button>
+  </div>
   <div class="bot-body" id="bot-body">
-    <svg width="86" height="106" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="88" height="108" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <!-- Volumetric 3D Gradients -->
+        <radialGradient id="head-volumetric" cx="45%" cy="35%" r="60%">
+          <stop offset="0%" stop-color="#7ea2f8"/>
+          <stop offset="45%" stop-color="#557be8"/>
+          <stop offset="85%" stop-color="#3b5ec9"/>
+          <stop offset="100%" stop-color="#2c47a3"/>
+        </radialGradient>
+        
+        <radialGradient id="body-volumetric" cx="45%" cy="35%" r="65%">
+          <stop offset="0%" stop-color="#7397f7"/>
+          <stop offset="50%" stop-color="#4d74e8"/>
+          <stop offset="90%" stop-color="#3454bc"/>
+          <stop offset="100%" stop-color="#243c8c"/>
+        </radialGradient>
+
+        <linearGradient id="limb-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#6a8ff5"/>
+          <stop offset="100%" stop-color="#2b48a8"/>
+        </linearGradient>
+
+        <linearGradient id="visor-glass" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#141824"/>
+          <stop offset="60%" stop-color="#192033"/>
+          <stop offset="100%" stop-color="#0f121d"/>
+        </linearGradient>
+
+        <linearGradient id="visor-glare" x1="0%" y1="0%" x2="100%" y2="80%">
+          <stop offset="0%" stop-color="#ffffff" stop-opacity="0.32"/>
+          <stop offset="35%" stop-color="#ffffff" stop-opacity="0.08"/>
+          <stop offset="70%" stop-color="#ffffff" stop-opacity="0"/>
+        </linearGradient>
+
+        <filter id="cyan-glow" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="1.5" result="blur"/>
+          <feMerge>
+            <feMergeNode in="blur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+      </defs>
+
       <!-- Feet -->
-      <rect x="36" y="93" width="11" height="16" rx="5.5" fill="#4263cc" stroke="#253c8a" stroke-width="2"/>
-      <rect x="53" y="93" width="11" height="16" rx="5.5" fill="#4263cc" stroke="#253c8a" stroke-width="2"/>
+      <g id="bot-feet">
+        <rect x="36" y="93" width="11" height="16" rx="5.5" fill="url(#limb-grad)" stroke="#1f3478" stroke-width="1.8"/>
+        <rect x="53" y="93" width="11" height="16" rx="5.5" fill="url(#limb-grad)" stroke="#1f3478" stroke-width="1.8"/>
+      </g>
       
       <!-- Torso -->
-      <rect x="30" y="68" width="40" height="30" rx="12" fill="#5f85ed" stroke="#253c8a" stroke-width="2.5"/>
-      <!-- Torso Prompt >_ -->
-      <path d="M43 80 L48 83.5 L43 87" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-      <line x1="52" y1="87" x2="58" y2="87" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+      <g id="bot-torso">
+        <rect x="30" y="68" width="40" height="30" rx="12" fill="url(#body-volumetric)" stroke="#223984" stroke-width="2"/>
+        <!-- Torso Prompt >_ with glow -->
+        <g filter="url(#cyan-glow)">
+          <path d="M43 80 L48 83.5 L43 87" stroke="#ffffff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="52" y1="87" x2="58" y2="87" stroke="#4ef0ea" stroke-width="2.3" stroke-linecap="round"/>
+        </g>
+      </g>
 
-      <!-- Arms -->
-      <rect x="20" y="73" width="11" height="18" rx="5.5" fill="#5f85ed" stroke="#253c8a" stroke-width="2" transform="rotate(15 20 73)"/>
-      <rect x="70" y="73" width="11" height="18" rx="5.5" fill="#5f85ed" stroke="#253c8a" stroke-width="2" transform="rotate(-15 70 73)"/>
+      <!-- Left Arm -->
+      <rect id="arm-left" x="20" y="73" width="11" height="18" rx="5.5" fill="url(#limb-grad)" stroke="#1f3478" stroke-width="1.8" transform="rotate(15 20 73)"/>
 
-      <!-- Cloud Head Shape -->
+      <!-- Right Arm (articulated for waving on hover) -->
+      <g id="arm-right">
+        <rect x="69" y="73" width="11" height="18" rx="5.5" fill="url(#limb-grad)" stroke="#1f3478" stroke-width="1.8" transform="rotate(-15 69 73)"/>
+      </g>
+
+      <!-- Cloud Head Shape with 3D Volumetric Gradient -->
       <g id="bot-head">
         <path d="
           M 25,50 
@@ -260,20 +322,23 @@ section{padding:46px 0}.section-head{display:flex;align-items:center;justify-con
           A 14,14 0 0,1 64,65 
           L 36,65 
           A 14,14 0 0,1 25,50 Z
-        " fill="#5f85ed" stroke="#253c8a" stroke-width="2.5"/>
+        " fill="url(#head-volumetric)" stroke="#20367e" stroke-width="2.2"/>
 
-        <!-- Face Screen / Visor -->
-        <rect x="28" y="27" width="44" height="32" rx="10" fill="#181c2b" stroke="#283049" stroke-width="2"/>
+        <!-- Face Screen / Visor with curved reflection -->
+        <g id="bot-screen">
+          <rect x="28" y="27" width="44" height="32" rx="10" fill="url(#visor-glass)" stroke="#232a3f" stroke-width="1.8"/>
+          <path d="M 32,29 Q 50,33 68,29 C 64,37 36,37 32,29 Z" fill="url(#visor-glare)"/>
+        </g>
         
-        <!-- Eyes (Track cursor) -->
-        <g id="bot-eyes" style="transition: transform 0.1s ease-out;">
+        <!-- Eyes (Track cursor & glow) -->
+        <g id="bot-eyes" filter="url(#cyan-glow)" style="transition: transform 0.08s ease-out;">
           <path id="left-eye" d="M 37,42 Q 42,45 46,42" stroke="#4ef0ea" stroke-width="3" stroke-linecap="round" fill="none"/>
           <path id="right-eye" d="M 54,42 Q 58,45 62,42" stroke="#4ef0ea" stroke-width="3" stroke-linecap="round" fill="none"/>
         </g>
       </g>
     </svg>
   </div>
-  <div class="bot-shadow"></div>
+  <div class="bot-shadow" id="bot-shadow"></div>
 </aside>
 
 <footer class="wrap"><span>© <span id="year">2026</span> yido</span><a href="#home">Back to top ↑</a></footer><div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -380,101 +445,229 @@ window.addEventListener('load', () => {
 });
 
 // ==========================================
-// Interactive Codex Mascot Bot Companion
+// Interactive Codex Mascot (Volumetric 3D)
 // ==========================================
 const companion = document.getElementById('bot-companion');
 const botBody = document.getElementById('bot-body');
+const botShadow = document.getElementById('bot-shadow');
 const botEyes = document.getElementById('bot-eyes');
+const bubbleWrap = document.getElementById('bot-bubble-wrap');
 const botBubble = document.getElementById('bot-bubble');
+const soundBtn = document.getElementById('bot-sound-btn');
 const leftEye = document.getElementById('left-eye');
 const rightEye = document.getElementById('right-eye');
 
-if (companion && botBody && botEyes) {
-  const botQuotes = [
-    "Hey there! 👋",
-    "I'm yido's bot companion! 🤖",
-    "Ask yido about Discord bots!",
-    "Check out Aether Chess Engine ♞",
-    "Cybersecurity mode: 100% active 🔒",
-    "Need a custom bot or tool? Say hi! ✨",
-    "Beep boop! All systems operational 🚀"
-  ];
+if (companion && botBody && botEyes && botBubble) {
+  // Default sound is muted per user preference
+  let soundMuted = localStorage.getItem('bot_sound') !== '1';
+  if (soundBtn) {
+    soundBtn.textContent = soundMuted ? '🔇' : '🔊';
+    soundBtn.title = soundMuted ? 'Sound is muted (click to unmute)' : 'Sound is enabled (click to mute)';
+  }
 
-  let quoteIdx = 0;
-  let bubbleTimer;
   let isBlinking = false;
+  let isSleeping = false;
+  let idleTimer;
+  let bubbleTimer;
+  let currentTiltX = 0, currentTiltY = 0;
+  let targetTiltX = 0, targetTiltY = 0;
 
-  function playBoopSound() {
+  function playChirp(type = 'boop') {
+    if (soundMuted) return;
     try {
       const AudioCtx = window.AudioContext || window.webkitAudioContext;
       if (!AudioCtx) return;
       const ctx = new AudioCtx();
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(440, ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.12);
-      gain.gain.setValueAtTime(0.04, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.12);
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      osc.start();
-      osc.stop(ctx.currentTime + 0.12);
+      if (type === 'boop') {
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(520, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(980, ctx.currentTime + 0.12);
+        gain.gain.setValueAtTime(0.04, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.12);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.12);
+      } else if (type === 'wake') {
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(380, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(760, ctx.currentTime + 0.16);
+        gain.gain.setValueAtTime(0.03, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.16);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.16);
+      }
     } catch(e) {}
   }
 
-  function blink() {
-    if (isBlinking) return;
-    isBlinking = true;
-    leftEye.setAttribute('d', 'M 37,43 L 46,43');
-    rightEye.setAttribute('d', 'M 54,43 L 62,43');
-    setTimeout(() => {
-      leftEye.setAttribute('d', 'M 37,42 Q 42,45 46,42');
-      rightEye.setAttribute('d', 'M 54,42 Q 58,45 62,42');
-      isBlinking = false;
-    }, 180);
+  if (soundBtn) {
+    soundBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      soundMuted = !soundMuted;
+      localStorage.setItem('bot_sound', soundMuted ? '0' : '1');
+      soundBtn.textContent = soundMuted ? '🔇' : '🔊';
+      soundBtn.title = soundMuted ? 'Sound is muted (click to unmute)' : 'Sound is enabled (click to mute)';
+      if (!soundMuted) playChirp('boop');
+    });
   }
 
+  function setEyeExpression(expr) {
+    if (!leftEye || !rightEye) return;
+    if (expr === 'idle') {
+      leftEye.setAttribute('d', 'M 37,42 Q 42,45 46,42');
+      rightEye.setAttribute('d', 'M 54,42 Q 58,45 62,42');
+    } else if (expr === 'happy') {
+      leftEye.setAttribute('d', 'M 37,43 Q 41.5,39 46,43');
+      rightEye.setAttribute('d', 'M 54,43 Q 58.5,39 62,43');
+    } else if (expr === 'curious') {
+      leftEye.setAttribute('d', 'M 37,41 Q 41.5,37 46,41');
+      rightEye.setAttribute('d', 'M 54,41 Q 58.5,37 62,41');
+    } else if (expr === 'blink' || expr === 'sleep') {
+      leftEye.setAttribute('d', 'M 37,43 L 46,43');
+      rightEye.setAttribute('d', 'M 54,43 L 62,43');
+    }
+  }
+
+  function blink() {
+    if (isBlinking || isSleeping) return;
+    isBlinking = true;
+    setEyeExpression('blink');
+    setTimeout(() => {
+      if (!isSleeping) setEyeExpression('idle');
+      isBlinking = false;
+    }, 160);
+  }
   setInterval(() => {
-    if (Math.random() > 0.3) blink();
+    if (!isSleeping && Math.random() > 0.35) blink();
   }, 3800);
 
+  companion.addEventListener('mouseenter', () => {
+    if (!isSleeping) setEyeExpression('curious');
+  });
+  companion.addEventListener('mouseleave', () => {
+    if (!isSleeping) setEyeExpression('idle');
+  });
+
+  const generalQuotes = [
+    "Hey there! 👋",
+    "I'm yido's desk companion! 🤖",
+    "Aether Chess in Rust is blazing fast! ♞",
+    "Check out Fluxer contributions! 🚀",
+    "Need a Discord bot or quick code check? Say hi! ✨"
+  ];
+  let quoteIdx = 0;
+
+  function getContextualQuote() {
+    const scrollPos = window.scrollY + window.innerHeight * 0.45;
+    const sections = [
+      { id: 'contact', text: "Need a custom bot or tool? Say hi! 💬" },
+      { id: 'projects', text: "Fluxer & Aether Chess — check 'em out! 🚀" },
+      { id: 'skills', text: "Python, Rust & TS — solid toolkit! ⚡" },
+      { id: 'focus', text: "Aether Chess in Rust: UCI & bitboards! ♞" },
+      { id: 'about', text: "Cybersecurity student & freelance dev! 🛡️" }
+    ];
+    for (const s of sections) {
+      const el = document.getElementById(s.id);
+      if (el && scrollPos >= el.offsetTop && scrollPos < el.offsetTop + el.offsetHeight + 100) {
+        return s.text;
+      }
+    }
+    const q = generalQuotes[quoteIdx % generalQuotes.length];
+    quoteIdx++;
+    return q;
+  }
+
+  function resetIdleTimer() {
+    clearTimeout(idleTimer);
+    if (isSleeping) wakeUp();
+    idleTimer = setTimeout(() => {
+      fallAsleep();
+    }, 28000);
+  }
+
+  function fallAsleep() {
+    isSleeping = true;
+    botBody.classList.add('sleeping');
+    setEyeExpression('sleep');
+    botBubble.textContent = "z Z Z ... 😴";
+    if (bubbleWrap) bubbleWrap.classList.add('show');
+  }
+
+  function wakeUp() {
+    isSleeping = false;
+    botBody.classList.remove('sleeping');
+    setEyeExpression('happy');
+    playChirp('wake');
+    botBubble.textContent = "I'm awake! 👀";
+    setTimeout(() => {
+      if (bubbleWrap) bubbleWrap.classList.remove('show');
+      setEyeExpression('idle');
+    }, 1800);
+    resetIdleTimer();
+  }
+
   companion.addEventListener('click', () => {
-    playBoopSound();
+    if (isSleeping) {
+      wakeUp();
+      return;
+    }
+    resetIdleTimer();
+    playChirp('boop');
+
     botBody.classList.remove('jumping');
     void botBody.offsetWidth;
     botBody.classList.add('jumping');
+    setEyeExpression('happy');
 
-    // Happy eyes ^ ^
-    leftEye.setAttribute('d', 'M 37,43 Q 41,39 46,43');
-    rightEye.setAttribute('d', 'M 54,43 Q 58,39 62,43');
+    botBubble.textContent = getContextualQuote();
+    if (bubbleWrap) bubbleWrap.classList.add('show');
 
-    botBubble.textContent = botQuotes[quoteIdx % botQuotes.length];
-    quoteIdx++;
-    botBubble.classList.add('show');
     clearTimeout(bubbleTimer);
     bubbleTimer = setTimeout(() => {
-      botBubble.classList.remove('show');
-      leftEye.setAttribute('d', 'M 37,42 Q 42,45 46,42');
-      rightEye.setAttribute('d', 'M 54,42 Q 58,45 62,42');
+      if (bubbleWrap) bubbleWrap.classList.remove('show');
+      if (!isSleeping) setEyeExpression('idle');
     }, 3400);
   });
 
-  // Track cursor
   window.addEventListener('mousemove', (e) => {
+    resetIdleTimer();
+    if (isSleeping) return;
+
     const rect = companion.getBoundingClientRect();
-    const botCenterX = rect.left + rect.width / 2;
-    const botCenterY = rect.top + 45;
-    
-    const deltaX = e.clientX - botCenterX;
-    const deltaY = e.clientY - botCenterY;
-    
-    const maxMove = 5;
-    const moveX = Math.max(-maxMove, Math.min(maxMove, (deltaX / window.innerWidth) * maxMove * 3));
-    const moveY = Math.max(-maxMove, Math.min(maxMove, (deltaY / window.innerHeight) * maxMove * 3));
-    
-    botEyes.style.transform = `translate(${moveX}px, ${moveY}px)`;
+    const botX = rect.left + rect.width / 2;
+    const botY = rect.top + 50;
+
+    const dx = e.clientX - botX;
+    const dy = e.clientY - botY;
+
+    const maxTilt = 16;
+    targetTiltY = Math.max(-maxTilt, Math.min(maxTilt, (dx / window.innerWidth) * maxTilt * 2.2));
+    targetTiltX = Math.max(-maxTilt, Math.min(maxTilt, -(dy / window.innerHeight) * maxTilt * 2.2));
+
+    const maxEyeMove = 4.5;
+    const eyeX = Math.max(-maxEyeMove, Math.min(maxEyeMove, (dx / window.innerWidth) * maxEyeMove * 2.5));
+    const eyeY = Math.max(-maxEyeMove, Math.min(maxEyeMove, (dy / window.innerHeight) * maxEyeMove * 2.5));
+    botEyes.style.transform = `translate(${eyeX}px, ${eyeY}px)`;
   });
+
+  function animate3DTilt() {
+    currentTiltX += (targetTiltX - currentTiltX) * 0.1;
+    currentTiltY += (targetTiltY - currentTiltY) * 0.1;
+
+    if (!isSleeping) {
+      botBody.style.transform = `rotateX(${currentTiltX.toFixed(2)}deg) rotateY(${currentTiltY.toFixed(2)}deg)`;
+      if (botShadow) {
+        botShadow.style.transform = `translateX(${(-currentTiltY * 0.45).toFixed(1)}px)`;
+      }
+    }
+    requestAnimationFrame(animate3DTilt);
+  }
+  requestAnimationFrame(animate3DTilt);
+  resetIdleTimer();
 }
 </script>
 </body>
