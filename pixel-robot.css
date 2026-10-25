@@ -1,0 +1,12 @@
+.pet-dock{position:fixed;inset:auto 0 0;height:112px;z-index:15;pointer-events:none;overflow:visible}
+.pet-character{position:absolute;left:0;bottom:8px;width:96px;height:96px;margin:0;padding:0;border:0;background:none;cursor:pointer;pointer-events:auto;transition:opacity .16s ease;touch-action:manipulation}
+.pet-character:focus-visible{outline:2px solid #b6a0ff;outline-offset:2px;border-radius:8px}
+.pet-sprite{display:block;width:96px;height:96px;background-image:url('./pixel-robot-sprites.png');background-size:768px 96px;background-repeat:no-repeat;background-position:0 0;image-rendering:pixelated;transform-origin:center bottom}
+.pet-dock[data-facing='left'] .pet-sprite{transform:scaleX(-1)}
+.pet-dock[data-occluded='true'] .pet-character,.pet-dock[data-hidden='true'] .pet-character{opacity:0;pointer-events:none;visibility:hidden}
+.pet-toggle{position:static;border:1px solid #454051;border-radius:999px;background:#18171fdf;color:#cfc6e4;padding:5px 9px;font:500 10px/1.2 Inter,'Segoe UI',Arial,sans-serif;cursor:pointer;pointer-events:auto;backdrop-filter:blur(8px)}
+.pet-toggle:hover{background:#292431;color:#fff}
+.pet-toggle:focus-visible{outline:2px solid #b6a0ff;outline-offset:3px}
+@media(max-width:680px){.pet-dock{height:92px}.pet-character{width:76px;height:76px;bottom:7px}.pet-sprite{width:76px;height:76px;background-size:608px 76px}.pet-toggle{padding:5px 7px;font-size:9px}}
+@media(prefers-reduced-motion:reduce){.pet-character{transition:none}}
+@media(max-width:480px){.rating-grid{grid-template-columns:1fr}.skill-group{min-width:0}}
